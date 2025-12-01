@@ -38,13 +38,24 @@
     }
   };
 
+  const seenColors = new Set();
+  const uniqueProducts = [];
 
+  products.forEach(p=>{
+    if(!seenColors.has(p.Ngjyra)) {
+      seenColors.add(p.Ngjyra); 
+      uniqueProducts.push(p); 
+    }
+  });
+
+
+  
     return (
   <> <HandleInput 
   styleNumber={styleNumber} 
   handleChange={handleChange} 
   handleSubmit={handleSubmit} /> 
-  {products.map((p) => (
+  {uniqueProducts.map((p) => (
     <ProductCard key={p.ArtikulliId} product={p} />
 ))}
   </>
