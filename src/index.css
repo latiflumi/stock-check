@@ -1,16 +1,21 @@
 @import 'tailwindcss';
 
-body {
+body {  
+  @apply flex items-center justify-center min-h-screen p-4 text-gray-200;
   background-color: #0b132b;
-  color: #e5e7eb; /* text-gray-200 */
+  color: #e5e7eb;
   font-family: 'Inter', sans-serif;
   min-height: 100vh;
-  display: flex;
-  flex-direction: row;
   gap: 1rem;
-  align-items: center;
-  justify-content: center;
   padding: 2rem;
+}
+
+.theme-box {
+  background-color: #111b34;       /* deep navy box */
+  border: 1px solid #1e2a48;       /* subtle blue border */
+  border-radius: 1rem;             /* rounded-2xl */
+  color: #e5e7eb;                  /* text-gray-200 */
+  box-shadow: 0 10px 15px rgba(0,0,0,0.25);
 }
 
 .productInfo {
@@ -22,4 +27,28 @@ body {
   flex-direction: row;
   gap: 20px;
   align-items: flex-start;
+}
+
+.productsContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+@media screen and (max-width: 768px) {
+  body{
+    flex-direction: column;
+    align-items: center;
+  }
+  .productsContainer {
+    flex-direction: column;
+}
+.productCard {
+    flex: 0 0 auto;
+    width: 400px;
+    align-items: flex-start;
+    max-width: 100%;
+  }
 }

@@ -51,14 +51,16 @@
 
   
     return (
-  <> <HandleInput 
+<>      
+   <HandleInput 
   styleNumber={styleNumber} 
   handleChange={handleChange} 
   handleSubmit={handleSubmit} /> 
-  {uniqueProducts.map((p) => (
+  <div className="productsContainer w-full gap-6 mt-10">{uniqueProducts.map((p) => (
     <ProductCard key={p.ArtikulliId} product={p} />
 ))}
-  </>
+</div>
+</>
     );
   };
 
