@@ -1,0 +1,26 @@
+[
+    {
+    "Size": "M",
+    "ArtikulliId": 111,
+    "stock": [
+      { "OrganisationName": "Prishtina 1", "Stoku": 3 },
+      { "OrganisationName": "Prishtina 2", "Stoku": 5 }
+    ]
+  },
+  {
+    "Size": "L",
+    "ArtikulliId": 112,
+    "stock": [
+      { "OrganisationName": "Prishtina 1", "Stoku": 0 },
+      { "OrganisationName": "Prishtina 2", "Stoku": 2 }
+    ]
+  },
+  {
+    "Size": "XL",
+    "ArtikulliId": 113,
+    "stock": [
+      { "OrganisationName": "Prishtina 1", "Stoku": 1 },
+      { "OrganisationName": "Prishtina 2", "Stoku": 0 }
+    ]
+  }
+]

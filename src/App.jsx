@@ -6,6 +6,7 @@
   const App = () => {
     const [styleNumber, setStyleNumber] = useState("");
     const [products, setProducts] = useState([]);
+    const API = 'http://localhost:5000';
 
     // handles typing
     const handleChange = (e) => {
@@ -13,31 +14,28 @@
     };
 
     // handles form submit
-    const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStyleNumber('');
+   const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const res = await fetch("http://localhost:5000/getStockByStyle", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          styleNumber: styleNumber
-        }),
-      });
+  const query = styleNumber.trim(); // FIX
+  setStyleNumber('');
 
-      if (!res.ok) throw new Error("Failed to fetch stock");
+  if (!query) return;
 
-      const data = await res.json();
-      setProducts(data.products);
+  console.log("FETCHING:", `${API}/api/product/details?styleNumber=${query}`); // debug
 
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  try {
+    const res = await fetch(`${API}/api/product/details?styleNumber=${query}`);
 
+    if (!res.ok) throw new Error("Failed to fetch stock");
+
+    const data = await res.json();
+    setProducts(data.variants);
+
+  } catch (err) {
+    console.error(err);
+  }
+};
   const seenColors = new Set();
   const uniqueProducts = [];
 
