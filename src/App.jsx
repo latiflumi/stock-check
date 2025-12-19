@@ -4,28 +4,34 @@
 
 
   const App = () => {
-    const [styleNumber, setStyleNumber] = useState("");
+    const [searchValue, setSearchValue] = useState("");
     const [products, setProducts] = useState([]);
     const API = 'http://localhost:5000';
 
     // handles typing
     const handleChange = (e) => {
-      setStyleNumber(e.target.value);
+      setSearchValue(e.target.value);
     };
 
     // handles form submit
    const handleSubmit = async (e) => {
   e.preventDefault();
 
-  const query = styleNumber.trim(); // FIX
-  setStyleNumber('');
+  // const query = searchValue.trim();
+  let queryString = "";
+  if(searchValue.length >= 13){
+      queryString = `productBarcode=${searchValue}`
+  }else {
+      queryString = `styleNumber=${searchValue}`
+  }
+  setSearchValue('');
 
-  if (!query) return;
+  if (!queryString) return;
 
-  console.log("FETCHING:", `${API}/api/product/details?styleNumber=${query}`); // debug
+  console.log("FETCHING:", `${API}/api/product/getproductbystyle?${queryString}`); // debug
 
   try {
-    const res = await fetch(`${API}/api/product/details?styleNumber=${query}`);
+    const res = await fetch(`${API}/api/product/getproductbystyle?${queryString}`);
 
     if (!res.ok) throw new Error("Failed to fetch stock");
 
@@ -51,7 +57,7 @@
     return (
 <>      
    <HandleInput 
-  styleNumber={styleNumber} 
+  searchValue ={searchValue} 
   handleChange={handleChange} 
   handleSubmit={handleSubmit} /> 
   <div className="productsContainer w-full gap-6 mt-10">{uniqueProducts.map((p) => (

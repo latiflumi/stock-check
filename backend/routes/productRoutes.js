@@ -5,15 +5,30 @@ import { Product } from "../models/Product.js";
 const router = express.Router();
 
 // GET /api/product/details
-router.get("/details", async (req, res) => {
-  const { styleNumber, ngjyra } = req.query;
+router.get("/getproductbystyle", async (req, res) => {
+  const { styleNumber, ngjyra, productBarcode} = req.query;
 
-  if (!styleNumber) {
-    return res.status(400).json({ error: "Missing styleNumber query" });
+  if (!styleNumber && !productBarcode) {
+    return res.status(400).json({ error: "Missing styleNumber or EAN query" });
   }
 
   // Build filter
-  let filter = { NumriSerik: styleNumber };
+ let productConditions = [];
+
+ if (styleNumber) {
+    const style = { NumriSerik: styleNumber };
+    productConditions.push(style);
+  }
+  if (productBarcode) {
+    const ean = { ShifraProdhuesit: productBarcode }
+    productConditions.push(ean);
+  }
+
+
+  let filter = 
+  {
+    $or: productConditions
+  };
 
   if (ngjyra) {
     const safeColor = ngjyra.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

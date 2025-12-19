@@ -15,10 +15,10 @@ const ProductCard = ({ product }) => {
           />
           <div className="productInfo">
             <h2 className="text-m font-bold mb-6 text-start">{product.Pershkrimi}</h2>
-            <p>Brendi: {product.PershkrimiBrendit}</p>
-            <p>Ngjyra: {product.Ngjyra}</p>
-            <p>Gjinia: {product.Gender}</p>
-            <p>Kategoria: {product.Kategoria}</p>
+            <p>Brand: {product.PershkrimiBrendit}</p>
+            <p>Color: {product.Ngjyra}</p>
+            <p>Gender: {product.Gender}</p>
+            <p>Category: {product.Kategoria}</p>
           </div>
         </div>
      );

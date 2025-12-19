@@ -1,17 +1,17 @@
-const HandleInput = ({ styleNumber, handleChange, handleSubmit }) => {
+const HandleInput = ({ searchValue, handleChange, handleSubmit }) => {
   return (
     <div className="theme-box mt-4 p-6 sm:p-8 rounded-2xl shadow-xl border border-gray-700 search-card w-full max-w-md mx-auto">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-white"> Kerko produktet </h1>
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-white"> Search Products </h1>
       <form
         id="searchForm"
         className="flex flex-row sm:flex-row gap-3"
         onSubmit={handleSubmit}
       >
         <input
-          value={styleNumber}
+          value={searchValue}
           onChange={handleChange}
           type="text"
-          placeholder="Numri serik ose Barkodi"
+          placeholder="Serial Number or EAN..."
           className="flex-1 w-[420px] border border-gray-600 rounded-lg px-4 py-3 bg-gray-900 text-gray-200 focus:border-blue-500 focus:outline-none"
         />
 

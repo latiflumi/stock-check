@@ -9,7 +9,8 @@ const productSchema = new mongoose.Schema({
   Ngjyra: String,
   Gender: String,
   Size: String,
-  PershkrimiShtes: String
+  PershkrimiShtes: String,
+  ShifraProdhuesit: String
 }, { collection: 'products'});
 
 export const Product = mongoose.model('Product', productSchema);
