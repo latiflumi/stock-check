@@ -1,19 +1,19 @@
-import express from "express";
 import dotenv from "dotenv";
-import { connectDB } from "./config/db.js"
-import productRoutes from "./routes/productRoutes.js";
-import cors from "cors";
-
 dotenv.config();
+
+import express from "express";
+import cors from "cors";
+import { connectDB } from "./config/db.js";
+import productRoutes from "./routes/productRoutes.js";
+import productDetails from "./routes/productDetails-route.js";
 
 const app = express();
 app.use(cors());
-
-connectDB(); // Connect MongoDB ONCE at startup
-
 app.use(express.json());
 
-// ROUTES
+connectDB();
+
 app.use("/api/product", productRoutes);
+app.use("/api/product", productDetails);
 
 app.listen(5000, () => console.log("Server running on port 5000"));

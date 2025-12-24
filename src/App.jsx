@@ -1,12 +1,12 @@
   import { useState } from "react";
-  import HandleInput from "./components/handleInput";
-  import ProductCard from "./components/ProductCard";
+  import { Routes, Route } from "react-router-dom";
+  import Home from './pages/home.jsx'
 
 
   const App = () => {
     const [searchValue, setSearchValue] = useState("");
     const [products, setProducts] = useState([]);
-    const API = 'http://localhost:5000';
+    const API = import.meta.env.VITE_API_URL;
 
     // handles typing
     const handleChange = (e) => {
@@ -17,7 +17,6 @@
    const handleSubmit = async (e) => {
   e.preventDefault();
 
-  // const query = searchValue.trim();
   let queryString = "";
   if(searchValue.length >= 13){
       queryString = `productBarcode=${searchValue}`
@@ -56,14 +55,19 @@
   
     return (
 <>      
-   <HandleInput 
-  searchValue ={searchValue} 
-  handleChange={handleChange} 
-  handleSubmit={handleSubmit} /> 
-  <div className="productsContainer w-full gap-6 mt-10">{uniqueProducts.map((p) => (
-    <ProductCard key={p.ArtikulliId} product={p} />
-))}
-</div>
+<Routes>
+  <Route
+    path="/"
+    element={
+      <Home
+        searchValue={searchValue}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        uniqueProducts={uniqueProducts}
+      />
+    }
+  />
+</Routes>
 </>
     );
   };
