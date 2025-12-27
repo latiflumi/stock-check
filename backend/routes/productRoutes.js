@@ -5,7 +5,7 @@ import { Product } from "../models/Product.js";
 const router = express.Router();
 
 // GET /api/product/details
-router.get("/getproductbystyle", async (req, res) => {
+router.get("/by-style", async (req, res) => {
   const { styleNumber, ngjyra, productBarcode} = req.query;
 
   if (!styleNumber && !productBarcode) {

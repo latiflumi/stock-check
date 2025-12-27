@@ -87,11 +87,24 @@ router.get("/details", async (req,res) => {
     }
    }
 
+   const organisationsArray = Object.values(orgMap);
+
+   // Re-order sizes 
+    const sortSizesArray = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
     const sizesOrder = [...new Set (sizesWithStock.map(item => item.size))];
+    sizesOrder.sort((a, b) => sortSizesArray.indexOf(a) - sortSizesArray.indexOf(b));
+
+    // Return only organisations that have atleast 1 size in stock 
+
+
+     const visibleOrganisations = organisationsArray.filter(org => {
+        return sizesOrder.some(size => org.sizes[size] > 0);
+    }
+)  
     const response = { 
         ...productMeta,
         sizesOrder,
-        organisations: Object.values(orgMap)
+        visibleOrganisations
     };
 
     cache.set(cacheKey, {

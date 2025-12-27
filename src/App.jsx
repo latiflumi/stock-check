@@ -1,5 +1,6 @@
   import { useState } from "react";
   import { Routes, Route } from "react-router-dom";
+  import ProductDetails from "./pages/product-details.jsx";
   import Home from './pages/home.jsx'
 
 
@@ -27,10 +28,8 @@
 
   if (!queryString) return;
 
-  console.log("FETCHING:", `${API}/api/product/getproductbystyle?${queryString}`); // debug
-
   try {
-    const res = await fetch(`${API}/api/product/getproductbystyle?${queryString}`);
+    const res = await fetch(`${API}/api/products/by-style?${queryString}`);
 
     if (!res.ok) throw new Error("Failed to fetch stock");
 
@@ -67,6 +66,7 @@
       />
     }
   />
+  <Route path="/product/:styleNumber" element={<ProductDetails />} />
 </Routes>
 </>
     );

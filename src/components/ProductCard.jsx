@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const ProductCard = ({ product }) => {
     const handleImageError = (e) => {
         e.target.onerror = null;
@@ -5,7 +7,8 @@ const ProductCard = ({ product }) => {
     };
 
     return (
-         <div className="productCard theme-box border border-gray-700 rounded-xl shadow-lg p-4 hover:bg-gray-700 
+      <Link to={ `/product/${product.NumriSerik}?color=${product.Ngjyra}&colorCode=${product.KodiNgjyres}`}>
+      <div className="productCard theme-box border border-gray-700 rounded-xl shadow-lg p-4 hover:bg-gray-700 
          transition-all duration-500 ease-out">
           <img 
             src={ `/src/images/${product.NumriSerik}_${product.KodiNgjyres}_1.jpg` }
@@ -21,7 +24,9 @@ const ProductCard = ({ product }) => {
             <p>Category: {product.Kategoria}</p>
           </div>
         </div>
+        </Link>
      );
 }
+
  
 export default ProductCard;

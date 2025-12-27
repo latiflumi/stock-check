@@ -13,7 +13,7 @@ app.use(express.json());
 
 connectDB();
 
-app.use("/api/product", productRoutes);
-app.use("/api/product", productDetails);
+app.use("/api/products", productRoutes);
+app.use("/api/stock", productDetails);
 
 app.listen(5000, () => console.log("Server running on port 5000"));
