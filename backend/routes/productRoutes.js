@@ -1,10 +1,11 @@
 // routes/productRoutes.js
-import express from "express";
+import express, { application } from "express";
 import { Product } from "../models/Product.js";
 
 const router = express.Router();
 
-// GET /api/product/details
+// GET /api/products/by-style
+
 router.get("/by-style", async (req, res) => {
   const { styleNumber, ngjyra, productBarcode} = req.query;
 
@@ -48,5 +49,29 @@ router.get("/by-style", async (req, res) => {
     res.status(500).json({ error: "Server Error" });
   }
 });
+
+router.get("/by-identity", async (req, res) => {
+  try {
+    const { styleNumber, colorCode, color } = req.query;
+
+    if(!styleNumber || !colorCode || !color){
+      return res.status(404).json({ message: "Missing query params"});
+    }
+
+    const product = await Product.findOne({
+      NumriSerik: styleNumber,
+      KodiNgjyres: colorCode,
+      Ngjyra: color
+    })
+    if(!product){
+      return res.status(404).json({ message: "Product not found"})
+    }
+
+    res.json(product)
+  } catch (err) {
+      console.log(err)
+    res.status(505).json({message: "Server error"});
+  }
+})
 
 export default router;
