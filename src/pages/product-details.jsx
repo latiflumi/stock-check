@@ -7,6 +7,7 @@ import ProductHeader from "../components/ProductHeader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useRef } from "react";
+import ThemeToggle from "../components/ThemeToggle";
 
 const ProductDetails = () => {
   const { styleNumber } = useParams();
@@ -143,23 +144,16 @@ useEffect(() => {
     <>
       {/* Nav Bar */}
       <nav
-        className="
-  sticky top-0 z-40
-  h-12
-  bg-[#0b132b]/90
-  backdrop-blur
-  border-b border-white/10
-"
+        className="sticky top-0 z-40 h-12 bg-white/90 border-b border-gray-200 dark:bg-[#0b132b]/90 dark:border-white/10 backdrop-blur"
       >
         <div className="max-w-screen-xl mx-auto px-4 h-full flex items-center justify-end">
           <div className="flex items-center gap-4">
+            <ThemeToggle />
             <Link
               to="/"
               className="
           flex items-center gap-2
           text-sm font-medium
-          text-blue-400
-          hover:text-blue-300
           px-3 py-1.5
           rounded-md
           hover:bg-blue-400/10

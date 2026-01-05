@@ -1,8 +1,8 @@
 const StockTable = ({ data }) => {
     const stockColorClass = (value) => {
-  if (value === 0) return "bg-red-600/20";
-  if (value < 2) return "bg-yellow-400/10";
-  return "bg-emerald-400/10";
+  if (value === 0) return "bg-red-500/15 dark:bg-red-600/20";
+  if (value < 2) return "bg-yellow-400/20 dark:bg-yellow-400/10";
+  return "bg-emerald-400/20 dark:bg-emerald-400/10";
 };
 
 if (data.visibleOrganisations.length === 0) {
@@ -21,17 +21,21 @@ if (data.visibleOrganisations.length === 0) {
 }
 
   return (
-    <div className="relative overflow-x-auto overflow-y-auto overscroll-x-contain mt-6 max-h-[70vh]">
-      <table className="w-max max-w-none mx-auto border-collapse bg-[#111b34]">
+    <div className="relative overflow-x-auto overflow-y-auto mt-6 max-h-[70vh]">
+      <table className="w-max max-w-none mx-auto border-collapse bg-slate-50 dark:bg-[#111b34]">
         <thead> 
           <tr>
-            <th className="sticky top-0 left-0 z-30 bg-[#111b34] border border-gray-700 p-4 text-left">
+            <th className="sticky bg-slate-200 top-0 left-0 z-30 p-4 text-left
+  bg-gray-100 border border-gray-300
+  dark:bg-[#111b34] dark:border-gray-700">
               Organisation
             </th>
             {data.sizesOrder.map(size => (
               <th
                 key={size}
-                className="sticky top-0 z-20 bg-[#111b34] border border-gray-700 p-4 text-center"
+                className="sticky bg-slate-200 top-0 z-20 p-4 text-center
+  bg-gray-100 border border-gray-300
+  dark:bg-[#111b34] dark:border-gray-700"
               >
                 {size}
               </th>
@@ -43,7 +47,9 @@ if (data.visibleOrganisations.length === 0) {
             <tr
               key={org.organisationId}
               >
-              <td className="sticky border p-2 w-20 border-gray-700 left-0 md:sticky md:w-full md:left-0 bg-[#111b34] z-10 px-4">
+              <td className="sticky bg-slate-200 left-0 z-10 px-4 p-2
+  bg-gray-100 border border-gray-300
+  dark:bg-[#111b34] dark:border-gray-700">
                 {org.organisationName}
               </td>
 
@@ -52,7 +58,9 @@ if (data.visibleOrganisations.length === 0) {
                 return (
                   <td
                     key={s}
-                    className={`border border-gray-700 p-2 text-center font-semibold whitespace-nowrap ${stockColorClass(stock)}`}
+                    className={`border p-2 text-center font-semibold whitespace-nowrap
+  border-gray-300 dark:border-gray-700
+  ${stockColorClass(stock)}`}
                   >
                     {stock ?? "-"}
                   </td>

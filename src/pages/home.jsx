@@ -1,6 +1,7 @@
- import { useState } from "react";
- import HandleInput from "../components/handleInput.jsx";
-  import ProductCard from "../components/ProductCard.jsx";
+import { useState } from "react";
+import HandleInput from "../components/handleInput.jsx";
+import ProductCard from "../components/ProductCard.jsx";
+import ThemeToggle from "../components/ThemeToggle.jsx";
 
 const Home = () => {
   
@@ -53,6 +54,7 @@ const Home = () => {
   return (
     <>
     <div className="flex flex-col items-center justify-center min-h-screen p-4">
+      <ThemeToggle />
       <HandleInput
         searchValue={searchValue}
         handleChange={handleChange}
@@ -63,7 +65,7 @@ const Home = () => {
           <ProductCard key={p.ArtikulliId} product={p} />
         ))}
       </div>
-        </div>
+    </div>
     </>
   );
 }

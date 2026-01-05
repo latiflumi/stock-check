@@ -6,7 +6,12 @@ const ProductMeta = ({ product }) => {
   };
 
     return ( 
-  <div className="w-100 border border-gray-700 rounded-xl shadow-lg p-4 bg-[#111b34] transition duration-200 hover:bg-gray-700">
+  <div className=" w-100
+  theme-box
+  p-4
+  hover:bg-slate-200/60
+  dark:hover:bg-gray-700
+  transition-colors">
   
   {/* MOBILE IMAGE */}
   <img

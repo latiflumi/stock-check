@@ -8,8 +8,12 @@ const ProductCard = ({ product, onSelect }) => {
 
     return (
       <Link to={ `/product/${product.NumriSerik}?color=${product.Ngjyra}&colorCode=${product.KodiNgjyres}`} onClick={onSelect}>
-      <div className="productCard theme-box border border-gray-700 rounded-xl shadow-lg p-4 hover:bg-gray-700 
-         transition-all duration-500 ease-out">
+      <div className=" productCard
+  theme-box
+  p-4
+  hover:bg-slate-200/60
+  dark:hover:bg-gray-700
+  transition-all duration-300">
           <img 
             src={ `/images/${product.NumriSerik}_${product.KodiNgjyres}_1.jpg` }
             alt="Product Image"
