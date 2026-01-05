@@ -1,13 +1,9 @@
 const ProductImage = ({ product }) => {
-  const imageSrc = `/images/${product.NumriSerik}_${product.KodiNgjyres}_1.jpg`;
+  const imageSrc = `/images/${product?.NumriSerik}_${product?.KodiNgjyres}_1.jpg`;
 
   const handleImageError = (e) => {
     e.currentTarget.src = `/images/default.jpg`;
   };
-console.log(
-  "Trying image:",
-  `/images/${product.NumriSerik}_${product.KodiNgjyres}_1.jpg`
-);
   return (
 <div className="hidden md:flex w-[360px] items-center justify-center">
       <img

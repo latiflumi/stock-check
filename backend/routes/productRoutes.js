@@ -54,15 +54,19 @@ router.get("/by-identity", async (req, res) => {
   try {
     const { styleNumber, colorCode, color } = req.query;
 
-    if(!styleNumber || !colorCode || !color){
+    if(!styleNumber || !color){
       return res.status(404).json({ message: "Missing query params"});
     }
-
-    const product = await Product.findOne({
+    const query = {
       NumriSerik: styleNumber,
-      KodiNgjyres: colorCode,
       Ngjyra: color
-    })
+    }
+
+    if(colorCode) {
+      query.KodiNgjyres = colorCode;
+    }
+    
+    const product = await Product.findOne(query);
     if(!product){
       return res.status(404).json({ message: "Product not found"})
     }

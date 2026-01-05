@@ -109,7 +109,7 @@ router.get("/details", async (req,res) => {
 
     cache.set(cacheKey, {
         data: response,
-        expiresAt:Date.now() + 10_000
+        expiresAt:Date.now() + 20_000
     })
     res.json(response);
 

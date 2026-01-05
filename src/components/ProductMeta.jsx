@@ -1,5 +1,5 @@
 const ProductMeta = ({ product }) => {
-      const imageSrc = `/images/${product.NumriSerik}_${product.KodiNgjyres}_1.jpg`;
+      const imageSrc = `/images/${product?.NumriSerik}_${product?.KodiNgjyres}_1.jpg`;
 
        const handleImageError = (e) => {
     e.currentTarget.src = `/images/default.jpg`;
@@ -17,14 +17,14 @@ const ProductMeta = ({ product }) => {
 
   {/* PRODUCT INFO */}
   <div>
-    <h2 className="text-xl pb-4 font-bold">{product.Pershkrimi}</h2>
+    <h2 className="text-xl pb-4 font-bold">{product?.Pershkrimi}</h2>
 
-    <p><strong>Brand:</strong> {product.PershkrimiBrendit}</p>
-    <p><strong>StyleNumber:</strong> {product.NumriSerik}</p>
-    <p><strong>Color:</strong> {product.Ngjyra}</p>
-    <p><strong>Gender:</strong> {product.Gender}</p>
-    <p><strong>Category:</strong> {product.Kategoria}</p>
-    <p className="whitespace-normal break-words"><strong>Composition:</strong> {product.PershkrimiShtes}</p>
+    <p><strong>Brand:</strong> {product?.PershkrimiBrendit}</p>
+    <p><strong>StyleNumber:</strong> {product?.NumriSerik}</p>
+    <p><strong>Color:</strong> {product?.Ngjyra}</p>
+    <p><strong>Gender:</strong> {product?.Gender}</p>
+    <p><strong>Category:</strong> {product?.Kategoria}</p>
+    <p className="whitespace-normal break-words"><strong>Composition:</strong> {product?.PershkrimiShtes}</p>
     {/* TO DO add price later */}
     {/* <p>
       <strong>Çmimi:</strong>
