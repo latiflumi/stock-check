@@ -22,7 +22,7 @@ const ProductMeta = ({ product }) => {
 
   {/* PRODUCT INFO */}
   <div>
-    <h2 className="text-xl pb-4 font-bold">{product?.Pershkrimi}</h2>
+    <h2 className="text-xl w-full font-bold">{product?.Pershkrimi}</h2>
 
     <p><strong>Brand:</strong> {product?.PershkrimiBrendit}</p>
     <p><strong>StyleNumber:</strong> {product?.NumriSerik}</p>

@@ -1,5 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
+import { FiSun, FiMoon } from "react-icons/fi";
 import { useTheme } from "../context/ThemeContext";
 
 const ThemeToggle = () => {
@@ -11,8 +10,8 @@ const ThemeToggle = () => {
       aria-label="Toggle theme"
       className="
         flex items-center justify-center
-        p-2
         rounded-md
+        px-2
         text-slate-600 hover:text-slate-800
         hover:bg-slate-200/60
         transition
@@ -21,13 +20,15 @@ const ThemeToggle = () => {
         dark:hover:bg-white/10
       "
     >
-      <FontAwesomeIcon
-        icon={theme === "dark" ? faSun : faMoon}
-        className="text-sm"
-      />
-       <span className="whitespace-nowrap text-xs opacity-80 p-2">
-    {theme === "dark" ? " Light mode" : " Dark mode"}
-  </span>
+      {theme === "dark" ? (
+        <FiSun className="text-sm" />
+      ) : (
+        <FiMoon className="text-sm" />
+      )}
+
+      <span className="whitespace-nowrap text-xs opacity-80 p-2">
+        {theme === "dark" ? "Light mode" : "Dark mode"}
+      </span>
     </button>
   );
 };

@@ -47,7 +47,7 @@ if (data.visibleOrganisations.length === 0) {
             <tr
               key={org.organisationId}
               >
-              <td className="sticky bg-slate-200 left-0 z-10 px-4 p-2
+              <td className="sticky w-40 bg-slate-200 left-0 z-10 px-4 p-2
   bg-gray-100 border border-gray-300
   dark:bg-[#111b34] dark:border-gray-700">
                 {org.organisationName}

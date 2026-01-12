@@ -3,8 +3,9 @@ import HandleInput from "../components/handleInput.jsx";
 import ProductCard from "../components/ProductCard.jsx";
 import ThemeToggle from "../components/ThemeToggle.jsx";
 
+
 const Home = () => {
-  
+    
      const [searchValue, setSearchValue] = useState("");
         const [products, setProducts] = useState([]);
         const API = import.meta.env.VITE_API_URL;
@@ -37,7 +38,7 @@ const Home = () => {
         setProducts(data.variants);
     
       } catch (err) {
-        console.error(err);
+        alert('This product does not exist');
       }
     };
       const seenColors = new Set();
@@ -50,11 +51,19 @@ const Home = () => {
         }
       });
     
-    
   return (
     <>
+          {/* Nav Bar */}
+          <nav
+            className="sticky top-0 z-40 h-12 bg-white/90 border-b border-gray-200 dark:bg-[#0b132b]/90 dark:border-white/10 backdrop-blur"
+          >
+            <div className="max-w-screen-xl mx-auto px-4 h-full flex items-center justify-end">
+              <div className="flex items-center gap-4">
+                <ThemeToggle />
+              </div>
+            </div>
+          </nav>
     <div className="flex flex-col items-center justify-center min-h-screen p-4">
-      <ThemeToggle />
       <HandleInput
         searchValue={searchValue}
         handleChange={handleChange}

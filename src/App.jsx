@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./routes/ProtectedRoute";
 import ProductDetails from "./pages/product-details.jsx";
+import Login from "./pages/login";
 import Home from "./pages/home.jsx";
 
 const App = () => {
@@ -12,8 +14,12 @@ const App = () => {
   transition-colors"
       >
         <Routes>
+            <Route path="/login" element={<Login />} />
+
+            <Route element={<ProtectedRoute />}>
           <Route path="/" element={<Home />} />
           <Route path="/product/:styleNumber" element={<ProductDetails />} />
+          </Route>
         </Routes>
       </div>
     </>
