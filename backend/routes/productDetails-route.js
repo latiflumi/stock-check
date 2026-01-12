@@ -33,9 +33,9 @@ router.get("/details", async (req,res) => {
     const {styleNumber, color, colorCode} = req.query;
     
     const normalizedColorCode =
-    colorCode && colorCode !== "undefined" && colorCode !== ""
+     colorCode && colorCode !== "undefined" && colorCode !== "null" && colorCode !== ""
     ? colorCode
-    : null; 
+    : null;
 
     const cacheKey = JSON.stringify({ 
         styleNumber,

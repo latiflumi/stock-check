@@ -62,7 +62,7 @@ router.get("/by-identity", async (req, res) => {
       Ngjyra: color
     }
 
-    if(colorCode) {
+    if(colorCode && colorCode !== "null") {
       query.KodiNgjyres = colorCode;
     }
     
