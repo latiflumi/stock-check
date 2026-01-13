@@ -8,6 +8,8 @@ const Home = () => {
     
      const [searchValue, setSearchValue] = useState("");
         const [products, setProducts] = useState([]);
+        const [error, setError] = useState("");
+
         const API = import.meta.env.VITE_API_URL;
     
         // handles typing
@@ -18,17 +20,17 @@ const Home = () => {
         // handles form submit
        const handleSubmit = async (e) => {
       e.preventDefault();
-    
+      
       let queryString = "";
       if(searchValue.length >= 13){
-          queryString = `productBarcode=${searchValue}`
+        queryString = `productBarcode=${searchValue}`
       }else {
-          queryString = `styleNumber=${searchValue}`
+        queryString = `styleNumber=${searchValue}`
       }
       setSearchValue('');
-    
+      
       if (!queryString) return;
-    
+      
       try {
         const res = await fetch(`${API}/api/products/by-style?${queryString}`);
     
@@ -38,7 +40,10 @@ const Home = () => {
         setProducts(data.variants);
     
       } catch (err) {
-        alert('This product does not exist');
+            setError("This product does not exist");
+         setTimeout(() => {
+        setError("");
+      }, 2000);
       }
     };
       const seenColors = new Set();
@@ -64,6 +69,13 @@ const Home = () => {
             </div>
           </nav>
     <div className="flex flex-col items-center justify-center min-h-screen p-4">
+     {error && (
+          <div className="max-w-xl mb-4">
+            <div className="rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-red-700 text-sm dark:border-red-500/40 dark:bg-red-500/10 dark:text-red-300">
+              {error}
+            </div>
+          </div>
+        )}
       <HandleInput
         searchValue={searchValue}
         handleChange={handleChange}

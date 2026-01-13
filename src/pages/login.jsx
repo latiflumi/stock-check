@@ -18,19 +18,30 @@ const Login = () => {
       await login(username, password);
       navigate("/");
     } catch (err) {
-      setError(err.response?.data?.message || "Login failed");
+      setError(err.response?.data?.message || "Wrong credentials");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
     }
   };
 
   return (
     <div
       className="
-        min-h-screen flex items-center justify-center
+        min-h-screen flex flex-col items-center justify-center
         bg-slate-100 text-slate-800
         dark:bg-[#0b132b] dark:text-gray-200
         transition-colors
       "
     >
+      
+          {error && (
+          <div className="max-w-xl mb-4">
+            <div className="rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-red-700 text-sm dark:border-red-500/40 dark:bg-red-500/10 dark:text-red-300">
+              {error}
+            </div>
+          </div>
+        )}  
       <form
         onSubmit={handleSubmit}
         className="
@@ -42,13 +53,6 @@ const Login = () => {
         <h1 className="text-xl font-semibold text-center">
           Login
         </h1>
-
-        {error && (
-          <p className="text-sm text-red-500 dark:text-red-400">
-            {error}
-          </p>
-        )}
-
         <input
           type="text"
           placeholder="Username"
