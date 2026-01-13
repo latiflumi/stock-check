@@ -2,6 +2,7 @@ import { useState } from "react";
 import HandleInput from "../components/handleInput.jsx";
 import ProductCard from "../components/ProductCard.jsx";
 import ThemeToggle from "../components/ThemeToggle.jsx";
+import ThemeTip from "../components/ThemeTip.jsx";
 
 
 const Home = () => {
@@ -63,8 +64,9 @@ const Home = () => {
             className="sticky top-0 z-40 h-12 bg-white/90 border-b border-gray-200 dark:bg-[#0b132b]/90 dark:border-white/10 backdrop-blur"
           >
             <div className="max-w-screen-xl mx-auto px-4 h-full flex items-center justify-end">
-              <div className="flex items-center gap-4">
+              <div className="relative flex items-center gap-4">
                 <ThemeToggle />
+                <ThemeTip />
               </div>
             </div>
           </nav>

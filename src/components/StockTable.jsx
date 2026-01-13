@@ -1,5 +1,6 @@
 const StockTable = ({ data }) => {
-    const stockColorClass = (value) => {
+
+  const stockColorClass = (value) => {
   if (value === 0) return "bg-red-500/15 dark:bg-red-600/20";
   if (value < 2) return "bg-yellow-400/20 dark:bg-yellow-400/10";
   return "bg-emerald-400/20 dark:bg-emerald-400/10";
@@ -52,7 +53,7 @@ if (data.visibleOrganisations.length === 0) {
   dark:bg-[#111b34] dark:border-gray-700">
                 {org.organisationName}
               </td>
-
+              
               {data.sizesOrder.map(s => {
                 const stock = org.sizes[s];
                 return (
@@ -62,7 +63,7 @@ if (data.visibleOrganisations.length === 0) {
   border-gray-300 dark:border-gray-700
   ${stockColorClass(stock)}`}
                   >
-                    {stock ?? "-"}
+                    {stock ?? "0"}
                   </td>
                 );
               })}

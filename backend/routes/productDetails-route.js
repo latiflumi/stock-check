@@ -83,27 +83,28 @@ router.get("/details", async (req,res) => {
         orgMap[orgId].sizes[size] = orgStock.stock;
     }
    }
-
+   console.log(orgMap);
    const organisationsArray = Object.values(orgMap);
 
    // Re-order sizes 
     const sortSizesArray = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
     const sizesOrder = [...new Set (sizesWithStock.map(item => item.size))];
     sizesOrder.sort((a, b) => sortSizesArray.indexOf(a) - sortSizesArray.indexOf(b));
+    
 
     // Return only organisations that have atleast 1 size in stock 
-
-
-     const visibleOrganisations = organisationsArray.filter(org => {
+        
+    const visibleOrganisations = organisationsArray.filter(org => {
         return sizesOrder.some(size => org.sizes[size] > 0);
     }
+    
 )  
-    const response = { 
+const response = { 
         ...productMeta,
         sizesOrder,
         visibleOrganisations
     };
-
+    console.log(response);
     cache.set(cacheKey, {
         data: response,
         expiresAt:Date.now() + 120_000
@@ -111,7 +112,5 @@ router.get("/details", async (req,res) => {
     res.json(response);
 
 });
-
-
 
 export default router;
