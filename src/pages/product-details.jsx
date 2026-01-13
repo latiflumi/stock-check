@@ -80,7 +80,7 @@ const ProductDetails = () => {
   }, [styleNumber, colorCode, color]);
 
   {
-    /* Fetching all product variants   data from mongoDB */
+    /* Fetching all product variants data from mongoDB */
   }
 
   useEffect(() => {

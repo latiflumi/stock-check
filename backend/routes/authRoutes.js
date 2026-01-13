@@ -57,7 +57,6 @@ router.post('/login', async(req, res, next)=>{
         })
 
     } catch (err) {
-        console.log(err);
         next(err);
     }
 })
@@ -69,7 +68,6 @@ router.post('/login', async(req, res, next)=>{
 router.post('/refresh', async(req, res, next) => {
     try {
         const token = req.cookies?.refreshToken;
-        console.log('refreshing token...')
 
         if(!token){
             res.status(401);

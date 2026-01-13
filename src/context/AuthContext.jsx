@@ -8,7 +8,6 @@ export const AuthProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // 🔁 refresh on page reload
   useEffect(() => {
     const refresh = async () => {
       try {

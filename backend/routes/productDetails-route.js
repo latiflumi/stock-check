@@ -46,11 +46,8 @@ router.get("/details", async (req,res) => {
     const cached = cache.get(cacheKey);
 
     if (cached && cached.expiresAt > Date.now()){ 
-        console.log ('Cache HIT', cacheKey);
         return res.json(cached.data);
     }
-
-    console.log('Cache MISS', cacheKey);
 
     const productMeta = await getProductFromMongo(styleNumber,color, normalizedColorCode);
       
