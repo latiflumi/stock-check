@@ -2,7 +2,7 @@ import { useState } from "react";
 import HandleInput from "../components/handleInput.jsx";
 import ProductCard from "../components/ProductCard.jsx";
 import ThemeToggle from "../components/ThemeToggle.jsx";
-import ThemeTip from "../components/ThemeTip.jsx";
+import OnBoardingTip from "../components/OnBoardingTip.jsx";
 
 
 const Home = () => {
@@ -66,7 +66,7 @@ const Home = () => {
             <div className="max-w-screen-xl mx-auto px-4 h-full flex items-center justify-end">
               <div className="relative flex items-center gap-4">
                 <ThemeToggle />
-                <ThemeTip />
+                <OnBoardingTip text={'You can change the theme by pressing this button'}/>
               </div>
             </div>
           </nav>

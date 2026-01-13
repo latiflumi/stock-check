@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useRef } from "react";
 import ThemeToggle from "../components/ThemeToggle";
+import OnBoardingTip from "../components/OnBoardingTip.jsx";
+
 
 const ProductDetails = () => {
   const { styleNumber } = useParams();
@@ -149,6 +151,7 @@ useEffect(() => {
         <div className="max-w-screen-xl mx-auto px-4 h-full flex items-center justify-end">
           <div className="flex items-center gap-4">
             <ThemeToggle />
+            <div className='relative'>
             <Link
               to="/"
               className="
@@ -163,6 +166,8 @@ useEffect(() => {
               <FontAwesomeIcon icon={faMagnifyingGlass} className="text-xs" />
               <span>New Search</span>
             </Link>
+            <OnBoardingTip text={'You can search new products by pressing this button'}/>
+          </div>
           </div>
         </div>
       </nav>
