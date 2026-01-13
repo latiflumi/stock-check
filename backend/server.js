@@ -12,15 +12,13 @@ import authRoutes from "./routes/authRoutes.js"
 
 const app = express();
 
+const allowedOrigins = process.env.CLIENT_URL ? process.env.CLIENT_URL.split(',').map(o => o.trim()) : [];
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(
     cors({
-        origin: [
-            'http://localhost:5173',
-            'http://192.168.10.44:5173',
-            'http://192.168.178.68:5173'
-        ],
+        origin:allowedOrigins,
         credentials:true,
     })
 )
