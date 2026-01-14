@@ -166,7 +166,9 @@ useEffect(() => {
               <FontAwesomeIcon icon={faMagnifyingGlass} className="text-xs" />
               <span>New Search</span>
             </Link>
-            <OnBoardingTip text={'You can search new products by pressing this button'}/>
+            <OnBoardingTip 
+            text={'You can search new products by pressing this button'}
+            storageKey={'onboarding_product_search_tip_seen'}/>
           </div>
           </div>
         </div>

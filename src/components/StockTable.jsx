@@ -2,8 +2,8 @@ const StockTable = ({ data }) => {
 
   const totalsBySize = data?.totalsBySize ?? {};
   const stockColorClass = (value) => {
-  if (value === 0) return "bg-red-500/15 dark:bg-red-600/20";
-  if (value < 2) return "bg-yellow-400/20 dark:bg-yellow-400/10";
+  if (value === 0) return "bg-red-500/15 dark:bg-red-600/20 text-red-500";
+  if (value < 2) return "bg-yellow-200/20 dark:bg-yellow-400/10 text-yellow-400";
   return "bg-emerald-400/20 dark:bg-emerald-400/10";
 };
 
@@ -23,7 +23,7 @@ if (data.visibleOrganisations.length === 0) {
 }
 
   return (
-    <div className="relative overflow-x-auto overflow-y-auto mt-6 max-h-[70vh]">
+    <div className="relative overflow-x-auto overflow-y-auto mt-6 max-h-[100vh]">
       <table className="w-max max-w-none mx-auto border-collapse bg-slate-50 dark:bg-[#111b34]">
         <thead> 
           <tr>
@@ -49,7 +49,7 @@ if (data.visibleOrganisations.length === 0) {
             <tr
               key={org.organisationId}
               >
-              <td className="sticky w-40 bg-slate-200 left-0 z-10 px-4 p-2
+              <td className="sticky w-40 md:w-full bg-slate-200 left-0 z-10 px-2 p-2
   bg-gray-100 border border-gray-300
   dark:bg-[#111b34] dark:border-gray-700">
                 {org.organisationName}
@@ -73,8 +73,8 @@ if (data.visibleOrganisations.length === 0) {
         </tbody>
                 <tfoot>
           <tr className="font-bold">
-            <td className="border p-2 text-center font-semibold whitespace-nowrap
-  border-gray-300 dark:border-gray-700">Total</td>
+            <td className="border sticky left-0 z-10 p-2 text-center font-semibold whitespace-nowrap
+  border-gray-300 dark:border-gray-700 dark:bg-[#1D2A55]">Total</td>
 
             {data.sizesOrder.map(size => (
               <td key={size} className={`border p-2 text-center font-semibold whitespace-nowrap

@@ -66,7 +66,9 @@ const Home = () => {
             <div className="max-w-screen-xl mx-auto px-4 h-full flex items-center justify-end">
               <div className="relative flex items-center gap-4">
                 <ThemeToggle />
-                <OnBoardingTip text={'You can change the theme by pressing this button'}/>
+                <OnBoardingTip 
+                text={'You can change the theme by pressing this button'}
+                storageKey={'onboarding_home_theme_tip_seen'}/>
               </div>
             </div>
           </nav>

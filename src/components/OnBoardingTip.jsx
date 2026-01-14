@@ -2,16 +2,16 @@ import { useEffect, useState } from 'react';
 
 
 
-const OnBoardingTip = ({text}) => {
+const OnBoardingTip = ({text, storageKey }) => {
     const [show, setShow] = useState(false);
 
     useEffect(() => {
-        const seen = localStorage.getItem('onboarding_theme_tip_seen')
+        const seen = localStorage.getItem(storageKey)
         if (!seen) setShow(true)
-    }, [])
+    }, [storageKey])
 
     const handleClose = () => {
-        localStorage.setItem('onboarding_theme_tip_seen', 'true')
+        localStorage.setItem(storageKey, 'true')
         setShow(false)
     }
     if(!show) return null;
