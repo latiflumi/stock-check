@@ -83,7 +83,6 @@ router.get("/details", async (req,res) => {
         orgMap[orgId].sizes[size] = orgStock.stock;
     }
    }
-   console.log(orgMap);
    const organisationsArray = Object.values(orgMap);
 
    // Re-order sizes 
@@ -96,13 +95,24 @@ router.get("/details", async (req,res) => {
         
     const visibleOrganisations = organisationsArray.filter(org => {
         return sizesOrder.some(size => org.sizes[size] > 0);
-    }
+    })
     
-)  
+    // Total stock by size
+
+    const totalsBySize = {};
+
+    sizesOrder.forEach(size => {
+    totalsBySize[size] = visibleOrganisations.reduce(
+        (sum, org) => sum + (org.sizes?.[size] || 0),
+        0
+    );
+    });
+
 const response = { 
         ...productMeta,
         sizesOrder,
-        visibleOrganisations
+        visibleOrganisations,
+        totalsBySize
     };
     console.log(response);
     cache.set(cacheKey, {

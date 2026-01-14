@@ -1,5 +1,6 @@
 const StockTable = ({ data }) => {
 
+  const totalsBySize = data?.totalsBySize ?? {};
   const stockColorClass = (value) => {
   if (value === 0) return "bg-red-500/15 dark:bg-red-600/20";
   if (value < 2) return "bg-yellow-400/20 dark:bg-yellow-400/10";
@@ -70,6 +71,20 @@ if (data.visibleOrganisations.length === 0) {
             </tr>
           ))}
         </tbody>
+                <tfoot>
+          <tr className="font-bold">
+            <td className="border p-2 text-center font-semibold whitespace-nowrap
+  border-gray-300 dark:border-gray-700">Total</td>
+
+            {data.sizesOrder.map(size => (
+              <td key={size} className={`border p-2 text-center font-semibold whitespace-nowrap
+  border-gray-300 dark:border-gray-700
+  ${stockColorClass(size)}`}>
+                {totalsBySize[size] ?? 0}
+              </td>
+            ))}
+          </tr>
+        </tfoot>
       </table>
     </div>
   );
