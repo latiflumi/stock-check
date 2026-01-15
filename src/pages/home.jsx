@@ -11,8 +11,6 @@ const Home = () => {
         const [products, setProducts] = useState([]);
         const [error, setError] = useState("");
         const [loading, setLoading] = useState(false);
-
-        const API = import.meta.env.VITE_API_URL;
     
         // handles typing
         const handleChange = (e) => {
@@ -37,7 +35,7 @@ const Home = () => {
         setLoading(true);
         setProducts([]);
 
-        const res = await fetch(`${API}/api/products/by-style?${queryString}`);
+        const res = await fetch(`/api/products/by-style?${queryString}`);
     
         if (!res.ok) throw new Error("Failed to fetch product info from MongoDB");
     

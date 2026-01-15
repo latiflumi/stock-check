@@ -35,11 +35,7 @@ const ProductDetails = () => {
     const fetchDetails = async () => {
       try {
         setLoading(true);
-        const res = await fetch(
-          `${
-            import.meta.env.VITE_API_URL
-          }/api/stock/details?styleNumber=${styleNumber}&color=${color}&colorCode=${colorCode}`
-        );
+        const res = await fetch(`/api/stock/details?styleNumber=${styleNumber}&color=${color}&colorCode=${colorCode}`);
         if (!res.ok) {
           throw new Error("Failed to fetch product details");
         }
@@ -64,7 +60,7 @@ const ProductDetails = () => {
       try {
         setLoading(true);
         const res = await fetch(
-          `${API}/api/products/by-identity?styleNumber=${styleNumber}&color=${color}&colorCode=${colorCode}`
+          `/api/products/by-identity?styleNumber=${styleNumber}&color=${color}&colorCode=${colorCode}`
         );
 
         if (!res.ok)
@@ -89,7 +85,7 @@ const ProductDetails = () => {
     const fetchProducts = async () => {
       try {
         const res = await fetch(
-          `${API}/api/products/by-style?styleNumber=${styleNumber}`
+          `/api/products/by-style?styleNumber=${styleNumber}`
         );
 
         if (!res.ok) throw new Error("Failed to fetch products");
