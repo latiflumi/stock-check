@@ -22,9 +22,9 @@ const OnBoardingTip = ({text, storageKey }) => {
                 <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-3 h-3 dark:bg-black bg-gray-300 rotate-45" />
         <p>{text}</p>
 
-        <button
+        <button 
           onClick={handleClose}
-          className="mt-2 text-xs underline opacity-80 hover:opacity-100"
+          className="mt-2 text-xs underline opacity-80 hover:text-green-600"
         >
           Got it
         </button>

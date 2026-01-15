@@ -159,7 +159,11 @@ useEffect(() => {
           text-sm font-medium
           px-3 py-1.5
           rounded-md
-          hover:bg-blue-400/10
+          bg-green-500/60
+          hover:bg-green-500/40
+          dark:bg-blue-500/50
+          dark:hover:bg-blue-500/40
+          text-white
           transition
         "
             >

@@ -87,11 +87,11 @@ const Login = () => {
           type="submit"
           className="
             w-full py-2 rounded-md font-medium
-            bg-slate-900 text-white
-            hover:bg-slate-800
-            dark:bg-slate-200 dark:text-slate-900
-            dark:hover:bg-white
-            transition-colors
+            bg-green-500/60 text-white
+            hover:bg-green-600
+            dark:bg-blue-600/60 dark:text-white
+            dark:hover:bg-blue-700
+            transition
           "
         >
           Login

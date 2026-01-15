@@ -25,7 +25,7 @@ const HandleInput = ({ searchValue, handleChange, handleSubmit }) => {
 
         <button
           type="submit"
-          className=" bg-blue-600 hover:bg-blue-500
+          className=" bg-green-500/60 hover:bg-green-500 dark:bg-blue-600/60 dark:hover:bg-blue-600
   text-white px-6 py-3 rounded-lg
   transition shadow-md"
         >
