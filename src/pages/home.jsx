@@ -10,6 +10,7 @@ const Home = () => {
      const [searchValue, setSearchValue] = useState("");
         const [products, setProducts] = useState([]);
         const [error, setError] = useState("");
+        const [loading, setLoading] = useState(false);
 
         const API = import.meta.env.VITE_API_URL;
     
@@ -33,6 +34,9 @@ const Home = () => {
       if (!queryString) return;
       
       try {
+        setLoading(true);
+        setProducts([]);
+
         const res = await fetch(`${API}/api/products/by-style?${queryString}`);
     
         if (!res.ok) throw new Error("Failed to fetch product info from MongoDB");
@@ -45,6 +49,8 @@ const Home = () => {
          setTimeout(() => {
         setError("");
       }, 2000);
+      } finally {
+        setLoading(false);
       }
     };
       const seenColors = new Set();
@@ -85,11 +91,20 @@ const Home = () => {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
+      {loading && (
+      <div className="w-full">
+        <div className="min-h-[200px] flex items-center justify-center">
+          <div className="h-10 w-10 animate-spin rounded-full border-4 border-gray-600 border-t-transparent dark:border-gray-300"></div>
+        </div>
+      </div>
+    )}
+          {!loading && (
       <div className="productsContainer w-full gap-6 mt-10">
         {uniqueProducts.map((p) => (
           <ProductCard key={p.ArtikulliId} product={p} />
         ))}
       </div>
+    )}
     </div>
     </>
   );
