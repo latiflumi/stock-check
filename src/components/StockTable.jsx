@@ -56,7 +56,7 @@ if (data.visibleOrganisations.length === 0) {
               </td>
               
               {data.sizesOrder.map(s => {
-                const stock = org.sizes[s];
+                const stock = Number(org.sizes[s] ?? 0);
                 return (
                   <td
                     key={s}
@@ -76,13 +76,14 @@ if (data.visibleOrganisations.length === 0) {
             <td className="border sticky left-0 z-10 p-2 text-center font-semibold whitespace-nowrap
   border-gray-300 dark:border-gray-700 dark:bg-[#1D2A55]">Total</td>
 
-            {data.sizesOrder.map(size => (
+            {data.sizesOrder.map(size => {
+              const stock = Number(totalsBySize[size] ?? 0);
+              return (
               <td key={size} className={`border p-2 text-center font-semibold whitespace-nowrap
-  border-gray-300 dark:border-gray-700
-  ${stockColorClass(size)}`}>
+  border-gray-300 dark:border-gray-700 ${stockColorClass(stock)}`}>
                 {totalsBySize[size] ?? 0}
               </td>
-            ))}
+            )})}
           </tr>
         </tfoot>
       </table>

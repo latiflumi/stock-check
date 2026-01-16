@@ -114,7 +114,6 @@ const response = {
         visibleOrganisations,
         totalsBySize
     };
-    console.log(response);
     cache.set(cacheKey, {
         data: response,
         expiresAt:Date.now() + 120_000
