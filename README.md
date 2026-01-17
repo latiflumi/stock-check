@@ -21,7 +21,7 @@ Designed for speed, clarity, and real-world retail workflows.
 
 **Demo Credentials:**  
 - Username: demo  
-- Password: demo123  
+- Password: demo.123  
 
 
 ## Demo Data (Style Numbers)
@@ -48,7 +48,7 @@ You can search using the following **Style Numbers**:
 > These style numbers are mapped to mock stock data across multiple stores and warehouses.
 
 
-**EAN Barcodes:**  
+## EAN Barcodes:  
 The app also supports searching by EAN barcodes (scanner-optimized, single-variant products):  
 `5715714074944, 5715671404280, , 5715824271455, 5715826350349`
 ---
@@ -83,7 +83,7 @@ The architecture and UX decisions were shaped by daily use in a real retail envi
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 ### Frontend
 - React (Vite)
