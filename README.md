@@ -59,10 +59,10 @@ You can search using the following **Style Numbers**:
 > These style numbers are mapped to mock stock data across multiple stores and warehouses.
 
 
-## EAN Barcodes:  
+**EAN Barcodes:**  
 The app also supports searching by EAN barcodes (scanner-optimized, single-variant products):  
-`5715714074944, 5715671404280, , 5715824271455, 5715826350349`
----
+`5715714074944, 5715671404280, 5715824271455, 5715826350349`
+
 
 ## Real-World Impact
 
