@@ -1,15 +1,13 @@
-import { useParams, useSearchParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useParams, useSearchParams, Link } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 import ProductCard from "../components/ProductCard";
 import StockTable from "../components/StockTable";
 import ProductHeader from "../components/ProductHeader";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { useRef } from "react";
 import ThemeToggle from "../components/ThemeToggle";
 import OnBoardingTip from "../components/OnBoardingTip.jsx";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import api from "../api/axios.js";
 
 const ProductDetails = () => {
   const { styleNumber } = useParams();
@@ -25,73 +23,66 @@ const ProductDetails = () => {
   const [error, setError] = useState(null);
 
   const stockRef = useRef(null);
-  const API = import.meta.env.VITE_API_URL;
 
-  {
-    /* Fetching stock data from live ERP or mock data from data.js */
-  }
-
+  /* =========================
+     Fetch stock details
+     ========================= */
   useEffect(() => {
     const fetchDetails = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`/stock/details?styleNumber=${styleNumber}&color=${color}&colorCode=${colorCode}`);
-        if (!res.ok) {
-          throw new Error("Failed to fetch product details");
-        }
-        const json = await res.json();
-        setData(json);
+
+        const res = await api.get("/stock/details", {
+          params: { styleNumber, color, colorCode },
+        });
+
+        setData(res.data);
       } catch (err) {
-        setError(err.message);
+        console.error(err);
+        setError("Failed to fetch product details");
       } finally {
         setLoading(false);
         setVariantLoading(false);
       }
     };
+
     fetchDetails();
-  }, [styleNumber, colorCode, color]);
+  }, [styleNumber, color, colorCode]);
 
-  {
-    /* Fetching single product data from mongoDB */
-  }
-
+  /* =========================
+     Fetch single product (Mongo)
+     ========================= */
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const res = await fetch(
-          `/products/by-identity?styleNumber=${styleNumber}&color=${color}&colorCode=${colorCode}`
-        );
 
-        if (!res.ok)
-          throw new Error("Failed to fetch product info from MongoDB");
+        const res = await api.get("/products/by-identity", {
+          params: { styleNumber, color, colorCode },
+        });
 
-        const data = await res.json();
-        setProduct(data);
+        setProduct(res.data);
       } catch (err) {
         console.error(err);
       } finally {
         setLoading(false);
       }
     };
+
     fetchProduct();
-  }, [styleNumber, colorCode, color]);
+  }, [styleNumber, color, colorCode]);
 
-  {
-    /* Fetching all product variants data from mongoDB */
-  }
-
+  /* =========================
+     Fetch all variants
+     ========================= */
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch(
-          `/products/by-style?styleNumber=${styleNumber}`
-        );
+        const res = await api.get("/products/by-style", {
+          params: { styleNumber },
+        });
 
-        if (!res.ok) throw new Error("Failed to fetch products");
-
-        const data = await res.json();
-        setProducts(data.variants);
+        setProducts(res.data.variants);
       } catch (err) {
         console.error(err);
       } finally {
@@ -102,22 +93,20 @@ const ProductDetails = () => {
     fetchProducts();
   }, [styleNumber]);
 
-      /* Scroll to stock table once a different color is selected from the product */
+  /* =========================
+     Scroll to stock table
+     ========================= */
+  useEffect(() => {
+    if (!stockRef.current) return;
 
-useEffect(() => {
-  if (!stockRef.current) return;
+    const yOffset = -80;
+    const y =
+      stockRef.current.getBoundingClientRect().top +
+      window.pageYOffset +
+      yOffset;
 
-  const yOffset = -80;
-  const y =
-    stockRef.current.getBoundingClientRect().top +
-    window.pageYOffset +
-    yOffset;
-
-  window.scrollTo({
-    top: y,
-    behavior: "smooth",
-  });
-}, [color, colorCode]);
+    window.scrollTo({ top: y, behavior: "smooth" });
+  }, [color, colorCode]);
 
   if (!data) {
     return (
@@ -128,6 +117,10 @@ useEffect(() => {
       </div>
     );
   }
+
+  /* =========================
+     Remove duplicate colors
+     ========================= */
   const seenColors = new Set();
   const uniqueProducts = [];
 
@@ -141,51 +134,53 @@ useEffect(() => {
   return (
     <>
       {/* Nav Bar */}
-      <nav
-        className="sticky top-0 z-40 h-12 bg-white/90 border-b border-gray-200 dark:bg-[#0b132b]/90 dark:border-white/10 backdrop-blur"
-      >
+      <nav className="sticky top-0 z-40 h-12 bg-white/90 border-b border-gray-200 dark:bg-[#0b132b]/90 dark:border-white/10 backdrop-blur">
         <div className="max-w-screen-xl mx-auto px-4 h-full flex items-center justify-end">
           <div className="flex items-center gap-4">
             <ThemeToggle />
-            <div className='relative'>
-            <Link
-              to="/"
-              className="
-          flex items-center gap-2
-          text-sm font-medium
-          px-3 py-1.5
-          rounded-md
-          bg-green-500/60
-          hover:bg-green-500/40
-          dark:bg-blue-500/50
-          dark:hover:bg-blue-500/40
-          text-white
-          transition
-        "
-            >
-              <FontAwesomeIcon icon={faMagnifyingGlass} className="text-xs" />
-              <span>New Search</span>
-            </Link>
-            <OnBoardingTip 
-            text={'You can search new products by pressing this button'}
-            storageKey={'onboarding_product_search_tip_seen'}/>
-          </div>
+            <div className="relative">
+              <Link
+                to="/"
+                className="
+                  flex items-center gap-2
+                  text-sm font-medium
+                  px-3 py-1.5
+                  rounded-md
+                  bg-green-500/60
+                  hover:bg-green-500/40
+                  dark:bg-blue-500/50
+                  dark:hover:bg-blue-500/40
+                  text-white
+                  transition
+                "
+              >
+                <FontAwesomeIcon icon={faMagnifyingGlass} className="text-xs" />
+                <span>New Search</span>
+              </Link>
+              <OnBoardingTip
+                text={"You can search new products by pressing this button"}
+                storageKey={"onboarding_product_search_tip_seen"}
+              />
+            </div>
           </div>
         </div>
       </nav>
 
       <div className="p-2">
         <ProductHeader product={product} />
+
         <div className="relative">
           {variantLoading && (
             <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/30 rounded-xl">
               <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-600 border-t-transparent"></div>
             </div>
           )}
+
           <div ref={stockRef}>
             <StockTable data={data} />
           </div>
         </div>
+
         <div className="productsContainer w-full gap-6 mt-10">
           {uniqueProducts.map((p) => (
             <ProductCard
