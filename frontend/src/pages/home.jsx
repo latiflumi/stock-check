@@ -1,5 +1,5 @@
 import { useState } from "react";
-import HandleInput from "../components/handleInput.jsx";
+import HandleInput from "../components/HandleInput.jsx";
 import ProductCard from "../components/ProductCard.jsx";
 import ThemeToggle from "../components/ThemeToggle.jsx";
 import OnBoardingTip from "../components/OnBoardingTip.jsx";
