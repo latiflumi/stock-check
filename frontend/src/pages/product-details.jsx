@@ -35,7 +35,7 @@ const ProductDetails = () => {
     const fetchDetails = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`/api/stock/details?styleNumber=${styleNumber}&color=${color}&colorCode=${colorCode}`);
+        const res = await fetch(`/stock/details?styleNumber=${styleNumber}&color=${color}&colorCode=${colorCode}`);
         if (!res.ok) {
           throw new Error("Failed to fetch product details");
         }
@@ -60,7 +60,7 @@ const ProductDetails = () => {
       try {
         setLoading(true);
         const res = await fetch(
-          `/api/products/by-identity?styleNumber=${styleNumber}&color=${color}&colorCode=${colorCode}`
+          `/products/by-identity?styleNumber=${styleNumber}&color=${color}&colorCode=${colorCode}`
         );
 
         if (!res.ok)
@@ -85,7 +85,7 @@ const ProductDetails = () => {
     const fetchProducts = async () => {
       try {
         const res = await fetch(
-          `/api/products/by-style?styleNumber=${styleNumber}`
+          `/products/by-style?styleNumber=${styleNumber}`
         );
 
         if (!res.ok) throw new Error("Failed to fetch products");

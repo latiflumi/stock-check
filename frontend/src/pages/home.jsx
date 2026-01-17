@@ -35,7 +35,7 @@ const Home = () => {
         setLoading(true);
         setProducts([]);
 
-        const res = await fetch(`/api/products/by-style?${queryString}`);
+        const res = await fetch(`/products/by-style?${queryString}`);
     
         if (!res.ok) throw new Error("Failed to fetch product info from MongoDB");
     
