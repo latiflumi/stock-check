@@ -1,16 +1,121 @@
-# React + Vite
+# Stock-Check App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern internal stock availability web application built to help retail teams quickly check product availability across multiple stores and warehouses.
 
-Currently, two official plugins are available:
+Designed for speed, clarity, and real-world retail workflows.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Live Demo
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Demo:** https://retailstock.netlify.app  
+## Security & Demo Limitations
 
-## Expanding the ESLint configuration
+- Demo uses mock data only
+- Limited product dataset
+- Read-only access
+- Authentication required
+- Rate-limited API endpoints
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+> Production version integrates with live ERP systems using secure, read-only APIs.
+
+**Demo Credentials:**  
+- Username: demo  
+- Password: demo123  
+
+
+## Demo Data (Style Numbers)
+
+The demo uses a limited mock dataset.
+
+You can search using the following **Style Numbers**:
+
+- 12259449
+- 12284649
+- 15349205
+- 2167472
+- 15352794
+- 15363388
+- 2172523
+- 22031145
+- 12249061
+- 16094477
+- 22018685
+- 22034247
+- 15358582
+
+
+> These style numbers are mapped to mock stock data across multiple stores and warehouses.
+
+
+**EAN Barcodes:**  
+The app also supports searching by EAN barcodes (scanner-optimized, single-variant products):  
+`5715714074944, 5715671404280, , 5715824271455, 5715826350349`
+---
+
+## Real-World Impact
+
+This application was designed based on real retail workflows and internal usage patterns.
+
+It helped:
+- Reduce time spent checking stock across stores
+- Eliminate manual store-to-store calls
+- Improve response time to customer inquiries
+- Provide instant stock visibility during peak hours
+
+The architecture and UX decisions were shaped by daily use in a real retail environment.
+
+**Stock-Check App** centralizes stock visibility into one fast, clean interface — optimized for real daily use in retail environments.
+
+---
+
+## Features
+
+- Search products by **Style Number / EAN**
+- Stock visibility by **Color & Size**
+- Multi-store & warehouse stock overview
+- JWT-based authentication
+- Optimized API calls with caching
+- Light / Dark mode
+- Fully responsive (desktop & mobile)
+- Mock data support for demos
+- Modular, scalable architecture
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- React (Vite)
+- Tailwind CSS
+- Axios
+- React Router
+- Context API
+
+### Backend
+- Node.js
+- Express
+- MongoDB (Mongoose)
+- JWT Authentication
+- Node-Cache
+
+### Dev & Deployment
+- Git & GitHub
+- Netlify (Frontend)
+- PM2 / Nginx (Production backend)
+- Environment-based configuration
+
+---
+
+## Architecture Overview
+
+```txt
+Frontend (React + Vite)
+        |
+        | Axios (API Requests)
+        |
+Backend (Node + Express)
+        |
+        | MongoDB (Products, Stock, Metadata)
+        |
+ERP / External APIs (Read-only)
