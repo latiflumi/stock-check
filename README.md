@@ -23,6 +23,17 @@ Designed for speed, clarity, and real-world retail workflows.
 - Username: demo  
 - Password: demo.123  
 
+Screenshots
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/99bf0294-2a2a-4caf-ab60-f0268ec3cfed" width="900" alt="Desktop view 1" />
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/3943cae9-6a5d-4592-95f9-fb21b2b1802f" width="900" alt="Desktop view 2" />
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0858dfc8-72d7-4dda-8f46-21d4d4e09cad" width="220" alt="Mobile view 1" />
+  <img src="https://github.com/user-attachments/assets/7e031941-7335-4b55-b13c-68806eede727" width="220" alt="Mobile view 2" />
+</p>
 
 ## Demo Data (Style Numbers)
 
@@ -48,10 +59,10 @@ You can search using the following **Style Numbers**:
 > These style numbers are mapped to mock stock data across multiple stores and warehouses.
 
 
-## EAN Barcodes:  
+**EAN Barcodes:**  
 The app also supports searching by EAN barcodes (scanner-optimized, single-variant products):  
-`5715714074944, 5715671404280, , 5715824271455, 5715826350349`
----
+`5715714074944, 5715671404280, 5715824271455, 5715826350349`
+
 
 ## Real-World Impact
 
