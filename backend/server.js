@@ -9,6 +9,7 @@ import { connectDB } from "./config/db.js";
 import productRoutes from "./routes/productRoutes.js";
 import productDetails from "./routes/productDetails-route.js";
 import authRoutes from "./routes/authRoutes.js"
+import verifyToken from "./middleware/verifyToken.js";
 
 
 const app = express();
@@ -27,7 +28,7 @@ app.use(
 connectDB();
 
 app.use("/api/auth", authRoutes);
-app.use("/api/products", productRoutes);
-app.use("/api/stock", productDetails);
+app.use("/api/products", verifyToken, productRoutes);
+app.use("/api/stock", verifyToken, productDetails);
 
 app.listen(5000, "0.0.0.0", () =>  console.log("Server running on port 5000"));
