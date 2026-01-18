@@ -21,7 +21,7 @@ Designed for speed, clarity, and real-world retail workflows.
 
 **Demo Credentials:**  
 - Username: demo  
-- Password: demo.123  
+- Password: demo.1212
 
 Screenshots
 <p align="center">
