@@ -96,6 +96,36 @@ router.get("/details", async (req,res) => {
     const visibleOrganisations = organisationsArray.filter(org => {
         return sizesOrder.some(size => org.sizes[size] > 0);
     })
+
+    // Return products that have stock 1 only in a single organisation (Warehouse)
+
+    const warehouse_id = 10;
+
+    const isOnlyInWarehouse = (() => {
+        const warehouse = organisationsArray.find (
+            org => org.organisationId === warehouse_id
+        );
+
+        if(!warehouse) return false;
+
+        //Warehouse must have at least ONE size > 0 
+
+        const warehouseHasStock = sizesOrder.some(
+            size => (warehouse.sizes?.[size] ?? 0) > 0
+        );
+
+        if(!warehouseHasStock) return false;
+
+        // All other organisations must have ZERO stock 
+
+        const othersHaveNoStock = organisationsArray
+        .filter(org => org.organisationId !== warehouse_id)
+        .every(org =>
+            sizesOrder.every(size => (org.sizes?.[size] ?? 0) === 0)
+        );
+        return othersHaveNoStock
+    })();
+
     
     // Total stock by size
 
@@ -112,12 +142,14 @@ const response = {
         ...productMeta,
         sizesOrder,
         visibleOrganisations,
-        totalsBySize
+        totalsBySize,
+        isOnlyInWarehouse
     };
     cache.set(cacheKey, {
         data: response,
         expiresAt:Date.now() + 120_000
     })
+    console.log(response);
     res.json(response);
 
 });

@@ -40,6 +40,13 @@ router.post('/login', async(req, res, next)=>{
         const accessToken = await generateToken(payload, '1m');
         const refreshToken = await generateToken(payload, '30d');
 
+        // Set access token 
+        res.cookie("accessToken", accessToken, {
+                httpOnly: true,
+                sameSite: "lax",
+                secure: false, // localhost
+    });
+
         // Set refresh token in HTTP-Only cookie
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,

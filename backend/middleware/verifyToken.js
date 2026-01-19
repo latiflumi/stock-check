@@ -1,7 +1,8 @@
 import jwt from "jsonwebtoken";
 
 export default function verifyToken(req, res, next) {
-  const token = req.cookies?.accessToken;
+  const token = req.cookies?.refreshToken;
+  console.log("COOKIES:", req.cookies);
 
   if (!token) {
     return res.status(401).json({ message: "Unauthorized" });
@@ -15,3 +16,4 @@ export default function verifyToken(req, res, next) {
     return res.status(403).json({ message: "Invalid or expired token" });
   }
 }
+
