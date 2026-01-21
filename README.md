@@ -23,6 +23,9 @@ Designed for speed, clarity, and real-world retail workflows.
 - Username: demo  
 - Password: demo.1212
 
+Note: Authentication uses HttpOnly cookies.
+Some browsers may block cross-site cookies in private/incognito mode
+
 Screenshots
 <p align="center">
   <img src="https://github.com/user-attachments/assets/99bf0294-2a2a-4caf-ab60-f0268ec3cfed" width="900" alt="Desktop view 1" />
