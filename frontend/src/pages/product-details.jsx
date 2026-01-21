@@ -131,6 +131,15 @@ const ProductDetails = () => {
     }
   });
 
+  /* ================
+    IF no stock available show message, instead of table
+    ================= */
+
+  const hasStock =
+    data &&
+    Array.isArray(data.visibleOrganisations) &&
+    data.visibleOrganisations.length > 0;
+
   return (
     <>
       {/* Nav Bar */}
@@ -177,7 +186,24 @@ const ProductDetails = () => {
           )}
 
           <div ref={stockRef}>
-            <StockTable data={data} />
+            {hasStock ? (
+              <StockTable data={data} />
+            ) : (
+              <div className="mt-10 flex w-full justify-center">
+                {" "}
+                <div className="rounded-xl border border-red-500/20 bg-red-500/10 px-6 py-4 text-center backdrop-blur-sm">
+                  {" "}
+                  <p className="text-xl font-medium tracking-wide text-red-300">
+                    {" "}
+                    No stock available{" "}
+                  </p>{" "}
+                  <p className="mt-1 text-l text-red-400/70">
+                    {" "}
+                    This item is currently unavailable in all locations{" "}
+                  </p>{" "}
+                </div>{" "}
+              </div>
+            )}
           </div>
         </div>
 

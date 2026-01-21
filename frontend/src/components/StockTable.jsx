@@ -7,21 +7,6 @@ const StockTable = ({ data }) => {
   return "bg-emerald-400/20 dark:bg-emerald-400/10";
 };
 
-if (!data || data.visibleOrganisations.length === 0) {
- return (
-  <div className="mt-10 flex w-full justify-center">
-    <div className="rounded-xl border border-red-500/20 bg-red-500/10 px-6 py-4 text-center backdrop-blur-sm">
-      <p className="text-xl font-medium tracking-wide text-red-300">
-        No stock available
-      </p>
-      <p className="mt-1 text-l text-red-400/70">
-        This item is currently unavailable in all locations
-      </p>
-    </div>
-  </div>
-);
-}
-
 return (
   <div className="relative overflow-x-auto overflow-y-auto mt-6 max-h-[100vh]">
     <table className="w-max max-w-none mx-auto border-collapse bg-slate-50 dark:bg-[#111b34]">
