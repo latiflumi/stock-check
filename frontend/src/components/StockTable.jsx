@@ -7,7 +7,7 @@ const StockTable = ({ data }) => {
   return "bg-emerald-400/20 dark:bg-emerald-400/10";
 };
 
-if (data.visibleOrganisations.length === 0) {
+if (!data || data.visibleOrganisations.length === 0) {
  return (
   <div className="mt-10 flex w-full justify-center">
     <div className="rounded-xl border border-red-500/20 bg-red-500/10 px-6 py-4 text-center backdrop-blur-sm">

@@ -167,7 +167,7 @@ const ProductDetails = () => {
       </nav>
 
       <div className="p-2">
-        <ProductHeader product={product} />
+        <ProductHeader product={product} data={data} />
 
         <div className="relative">
           {variantLoading && (

@@ -3,12 +3,12 @@ import ProductMeta from "./ProductMeta";
 
 
 
-const ProductHeader = ({ product }) => {
+const ProductHeader = ({ product, data }) => {
     return ( 
      <>
        <div className="flex flex-col items-center md:flex-row justify-center gap-8 w-full">
   <ProductImage product={product} />
-  <ProductMeta product={product} />
+  <ProductMeta data={data} product={product} />
 </div>
 
 </>

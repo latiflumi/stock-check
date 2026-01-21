@@ -1,10 +1,18 @@
-const ProductMeta = ({ product }) => {
+const ProductMeta = ({ product, data }) => {
       const imageSrc = `/images/${product?.NumriSerik}_${product?.KodiNgjyres}_1.jpg`;
 
        const handleImageError = (e) => {
     e.currentTarget.src = `/images/default.jpg`;
   };
 
+  const org = data?.visibleOrganisations?.[0];
+
+  if (!org) return null;
+
+  const { price, discountPrice, discount } = org;
+  const hasDiscount = discount > 0 && discountPrice < price;
+
+  
     return ( 
   <div className=" w-100
   theme-box
@@ -30,12 +38,29 @@ const ProductMeta = ({ product }) => {
     <p><strong>Gender:</strong> {product?.Gender}</p>
     <p><strong>Category:</strong> {product?.Kategoria}</p>
     <p className="whitespace-normal break-words"><strong>Composition:</strong> {product?.PershkrimiShtes}</p>
-    {/* TO DO add price later */}
-    {/* <p>
-      <strong>Çmimi:</strong>
-      <s className="ml-2">€69.99</s>
-      <span className="ml-2">€39.99 (-43%)</span>
-    </p> */}
+    <br/>
+   <p className="text-lg">
+      <strong>Price:</strong>{" "}
+      {hasDiscount ? (
+        <>
+          <span className="line-through text-gray-400 mr-2">
+            {price.toFixed(2)}€
+          </span>
+
+          <span className="font-semibold text-red-600 mr-2">
+            {discountPrice.toFixed(2)}€
+          </span>
+
+          <span className="text-sm text-green-600">
+            (-{discount}%)
+          </span>
+        </>
+      ) : (
+        <span className="font-semibold">
+          {price.toFixed(2)}€
+        </span>
+      )}
+    </p>
   </div>
 </div>
      );
