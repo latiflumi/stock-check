@@ -5,7 +5,7 @@ const ProductMeta = ({ product, data }) => {
     e.currentTarget.src = `/images/default.jpg`;
   };
 
-  const org = data?.organisations?.[0] ?? null;
+  const org = data?.visibleOrganisations?.[0] ?? null;
 
   const price = org?.price ?? null;
   const discountPrice = org?.discountPrice ?? null;
