@@ -39,28 +39,29 @@ const ProductMeta = ({ product, data }) => {
     <p><strong>Category:</strong> {product?.Kategoria}</p>
     <p className="whitespace-normal break-words"><strong>Composition:</strong> {product?.PershkrimiShtes}</p>
     <br/>
-   <p className="text-lg">
-      <strong>Price:</strong>{" "}
-      {hasDiscount ? (
-        <>
-          <span className="line-through text-gray-400 mr-2">
-            {price.toFixed(2)}€
-          </span>
+    <p className="text-lg flex items-center gap-2">
+  <strong>Price:</strong>
 
-          <span className="font-semibold text-red-600 mr-2">
-            {discountPrice.toFixed(2)}€
-          </span>
+  {hasDiscount ? (
+    <>
+      <span className="text-gray-400 line-through text-sm">
+        {price.toFixed(2)}€
+      </span>
 
-          <span className="text-sm text-green-600">
-            (-{discount}%)
-          </span>
-        </>
-      ) : (
-        <span className="font-semibold">
-          {price.toFixed(2)}€
-        </span>
-      )}
-    </p>
+      <span className="font-semibold text-red-600">
+        {discountPrice.toFixed(2)}€
+      </span>
+
+      <span className="text-xs text-green-600 font-medium">
+        -{discount}%
+      </span>
+    </>
+  ) : (
+    <span className="font-semibold">
+      {price.toFixed(2)}€
+    </span>
+  )}
+</p>
   </div>
 </div>
      );
