@@ -9,28 +9,24 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const refresh = async () => {
-      try {
-        const res = await api.post("/auth/refresh");
-        setAccessToken(res.data.accessToken);
-        setUser(res.data.user);
-      } catch (err) {
-        setUser(null);
-        setAccessToken(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    refresh();
+    const token = localStorage.getItem("accessToken");
+    const user = localStorage.getItem("user");
+  
+    if (token && user) {
+      setAccessToken(token);
+      setUser(JSON.parse(user));
+    }
+  
+    setLoading(false);
   }, []);
 
-  const login = async (username, password) => {
-    const res = await api.post("/auth/login", {
-      username,
-      password,
-    });
 
+  const login = async (username, password) => {
+    const res = await api.post("/auth/login", { username, password });
+  
+    localStorage.setItem("accessToken", res.data.accessToken);
+    localStorage.setItem("user", JSON.stringify(res.data.user));
+  
     setAccessToken(res.data.accessToken);
     setUser(res.data.user);
   };
