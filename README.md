@@ -23,8 +23,9 @@ Designed for speed, clarity, and real-world retail workflows.
 - Username: demo  
 - Password: demo.1212
 
-Note: Authentication uses HttpOnly cookies.
-Some browsers may block cross-site cookies in private/incognito mode
+Note: 
+-  The demo uses Bearer tokens in localStorage to ensure compatibility across mobile Safari and cross-domain deployments. 
+-  In production, the app would switch to httpOnly cookies under a shared domain for stronger security
 
 Screenshots
 <p align="center">
