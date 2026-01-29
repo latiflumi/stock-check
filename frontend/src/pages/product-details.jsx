@@ -5,6 +5,7 @@ import StockTable from "../components/StockTable";
 import ProductHeader from "../components/ProductHeader";
 import ThemeToggle from "../components/ThemeToggle";
 import OnBoardingTip from "../components/OnBoardingTip.jsx";
+import StockMovementHistory from "../components/StockMovementHistory"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import api from "../api/axios.js";
@@ -139,6 +140,15 @@ const ProductDetails = () => {
     data &&
     Array.isArray(data.visibleOrganisations) &&
     data.visibleOrganisations.length > 0;
+    
+
+    const skuToSizeMap = {};
+
+    if (data?.sizes) {
+      data.sizes.forEach(s => {
+        skuToSizeMap[s.sku] = s.size;
+      });
+}
 
   return (
     <>
@@ -206,6 +216,17 @@ const ProductDetails = () => {
             )}
           </div>
         </div>
+    <div className="
+  mx-auto
+  mt-8
+  max-w-4xl
+  p-4
+ ">
+  <StockMovementHistory
+    movements={data.stockMovementResults}
+    skuToSizeMap={skuToSizeMap}
+  />
+</div>
 
         <div className="productsContainer w-full gap-6 mt-10">
           {uniqueProducts.map((p) => (

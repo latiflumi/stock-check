@@ -1,5 +1,6 @@
     import express from 'express' 
     import { getStockBySku } from '../services/stock/stock-provider.js';
+    import { getStockMovement } from '../services/stock-movement/stock-movement.js';    
     import { Product } from '../models/Product.js';
 
     const router = express.Router();
@@ -55,9 +56,13 @@
             return res.status(404).json({message: "Product not found"});
         }
 
-        const stockPromises = productMeta.sizes.map(s => getStockBySku(s.sku));
+        const artikulliIds = productMeta.sizes.map(s => s.sku);
+        const stockMovementResults = await getStockMovement(artikulliIds);
 
+
+        const stockPromises = productMeta.sizes.map(s => getStockBySku(s.sku));
         const stockResults = await Promise.all(stockPromises);
+
 
         const sizesWithStock = productMeta.sizes.map((s, index) => ({
             size: s.size,
@@ -146,7 +151,8 @@
             sizesOrder,
             visibleOrganisations,
             totalsBySize,
-            isOnlyInWarehouse
+            isOnlyInWarehouse,
+            stockMovementResults
         };
         cache.set(cacheKey, {
             data: response,
