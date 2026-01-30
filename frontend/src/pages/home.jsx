@@ -39,7 +39,6 @@ const Home = () => {
         params,
       });
 
-      // axios already parses JSON
       setProducts(res.data.variants);
     } catch (err) {
       console.error(err);
@@ -102,7 +101,7 @@ const Home = () => {
         {!loading && (
           <div className="productsContainer w-full gap-6 mt-10">
             {uniqueProducts.map((p) => (
-              <ProductCard key={p.ArtikulliId} product={p} />
+              <ProductCard key={p.ArtikulliId} product={p} layout="row" />
             ))}
           </div>
         )}

@@ -174,7 +174,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </nav>
-
+      
       <div className="p-2">
         <ProductHeader product={product} data={data} />
 
@@ -206,13 +206,14 @@ const ProductDetails = () => {
             )}
           </div>
         </div>
-
-        <div className="productsContainer w-full gap-6 mt-10">
+        <div className="flex flex-col gap-4 md:flex-row justify-center mt-10">
           {uniqueProducts.map((p) => (
             <ProductCard
+              layout="row"
               key={p.ArtikulliId}
               product={p}
-              onSelect={() => setVariantLoading(true)}
+              onSelect={() => setVariantLoading(true)
+              }
             />
           ))}
         </div>

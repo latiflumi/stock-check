@@ -3,6 +3,7 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import ProductDetails from "./pages/product-details.jsx";
 import Login from "./pages/login";
 import Home from "./pages/home.jsx";
+import ProductsPage from "./pages/products-page.jsx"
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
 
             <Route element={<ProtectedRoute />}>
           <Route path="/" element={<Home />} />
+          <Route path="/products/" element={<ProductsPage />} />
           <Route path="/product/:styleNumber" element={<ProductDetails />} />
           </Route>
         </Routes>
