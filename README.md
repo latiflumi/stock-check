@@ -6,6 +6,19 @@ Designed for speed, clarity, and real-world retail workflows.
 
 ---
 
+## What This Project Demonstrates
+
+This project demonstrates my ability to:
+
+- Build real-world internal tools (not tutorials)
+- Translate business workflows into scalable APIs
+- Design multi-store inventory logic (sizes, colors, warehouses)
+- Implement authentication, caching, and rate-limiting
+- Handle demo vs production security tradeoffs
+- Deploy and maintain a production-ready MERN application
+
+---
+
 ## Live Demo
 
 **Demo:** https://retailstock.netlify.app  
@@ -98,6 +111,16 @@ The architecture and UX decisions were shaped by daily use in a real retail envi
 
 ---
 
+## Key Engineering Decisions
+
+- Read-only ERP integration to prevent accidental data mutation
+- Caching layer (node-cache) to reduce upstream system load
+- Demo authentication via localStorage to avoid Mobile Safari cookie issues
+- Production-ready architecture supporting httpOnly cookies
+- Frontend and backend separation for independent deployment
+
+---
+
 ## Tech Stack
 
 ### Frontend
@@ -134,3 +157,12 @@ Backend (Node + Express)
         | MongoDB (Products, Stock, Metadata)
         |
 ERP / External APIs (Read-only)
+
+```
+
+
+## Final Notes
+
+This project was built to reflect real operational constraints rather than idealized demos.
+
+It demonstrates how I approach system design, performance considerations, security tradeoffs, and UX for non-technical users.
