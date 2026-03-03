@@ -8,9 +8,6 @@ Designed for speed, clarity, and real-world retail workflows.
 
 ## What This Project Demonstrates
 
-This project demonstrates my ability to:
-
-- Build real-world internal tools (not tutorials)
 - Translate business workflows into scalable APIs
 - Design multi-store inventory logic (sizes, colors, warehouses)
 - Implement authentication, caching, and rate-limiting
